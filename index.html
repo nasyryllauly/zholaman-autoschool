@@ -1,15 +1,643 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/x-icon" href="/zholaman-autoschool/favicon.ico" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Автошкола "Жол Аман" - Обучение вождению в Алматы</title>
-    <script type="module" crossorigin src="/zholaman-autoschool/assets/index-DpHEh6Yx.js"></script>
-    <link rel="stylesheet" crossorigin href="/zholaman-autoschool/assets/index-D8J2svt5.css">
-  </head>
-  <body>
-    <div id="root"></div>
-  </body>
+    <link rel="icon" type="image/x-icon" href="data:image/x-icon;base64,">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 0;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #FF0000;
+        }
+
+        .logo::before {
+            content: "🚗";
+            margin-right: 10px;
+        }
+
+        .nav {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav a:hover {
+            color: #FF0000;
+        }
+
+        .header-buttons {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn {
+            padding: 0.5rem 1rem;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: #FF0000;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #CC0000;
+        }
+
+        .btn-secondary {
+            background: #0066CC;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #0052A3;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://nasyryllauly.github.io/zholaman-autoschool/assets/hero-background-xJwhdFiM.png');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            color: white;
+            text-align: left;
+            padding-top: 80px;
+        }
+
+        .hero-content h1 {
+            font-size: 3.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        .hero-content .highlight {
+            color: #FF0000;
+        }
+
+        .hero-content p {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero-content .subtitle {
+            font-size: 1.2rem;
+            color: #ddd;
+            margin-bottom: 2rem;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .hero-buttons .btn {
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+        }
+
+        /* Advantages Section */
+        .advantages {
+            padding: 5rem 0;
+            background: #f8f9fa;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 3rem;
+            color: #333;
+        }
+
+        .advantages-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .advantage-card {
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s;
+        }
+
+        .advantage-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .advantage-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .advantage-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .advantage-card p {
+            color: #666;
+        }
+
+        /* Courses Section */
+        .courses {
+            padding: 5rem 0;
+            background: white;
+        }
+
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .course-card {
+            background: white;
+            border: 2px solid #e9ecef;
+            border-radius: 15px;
+            padding: 2rem;
+            text-align: center;
+            position: relative;
+            transition: all 0.3s;
+        }
+
+        .course-card:hover {
+            border-color: #FF0000;
+            transform: translateY(-5px);
+        }
+
+        .course-card.popular {
+            border-color: #FF0000;
+            transform: scale(1.05);
+        }
+
+        .popular-badge {
+            background: #FF0000;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-weight: bold;
+            font-size: 0.9rem;
+        }
+
+        .course-price {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #FF0000;
+            margin-bottom: 1rem;
+        }
+
+        .course-features {
+            text-align: left;
+            margin: 1.5rem 0;
+        }
+
+        .course-features p {
+            margin-bottom: 0.5rem;
+            color: #666;
+        }
+
+        .course-features strong {
+            color: #333;
+        }
+
+        /* Process Section */
+        .process {
+            padding: 5rem 0;
+            background: #f8f9fa;
+        }
+
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .process-step {
+            text-align: center;
+            padding: 2rem;
+        }
+
+        .step-number {
+            width: 60px;
+            height: 60px;
+            background: #FF0000;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin: 0 auto 1rem;
+        }
+
+        .process-step h3 {
+            font-size: 1.3rem;
+            margin-bottom: 1rem;
+            color: #333;
+        }
+
+        .process-step p {
+            color: #666;
+        }
+
+        /* CTA Section */
+        .cta {
+            background: linear-gradient(135deg, #FF0000, #CC0000);
+            color: white;
+            padding: 5rem 0;
+            text-align: center;
+        }
+
+        .cta h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        /* Footer */
+        .footer {
+            background: #333;
+            color: white;
+            padding: 3rem 0 1rem;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 1rem;
+            color: #FF0000;
+        }
+
+        .footer-section p, .footer-section a {
+            color: #ccc;
+            text-decoration: none;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+
+        .footer-section a:hover {
+            color: white;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            padding-top: 2rem;
+            border-top: 1px solid #555;
+            color: #999;
+        }
+
+        /* Floating Widgets */
+        .floating-widgets {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .floating-btn {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            color: white;
+            text-decoration: none;
+            transition: all 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .floating-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .whatsapp-btn {
+            background: #25D366;
+        }
+
+        .telegram-btn {
+            background: #0088cc;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero-content h1 {
+                font-size: 2.5rem;
+            }
+            
+            .hero-content p {
+                font-size: 1.2rem;
+            }
+            
+            .nav {
+                display: none;
+            }
+            
+            .header-buttons {
+                flex-wrap: wrap;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">ЖОЛ АМАН</div>
+                <nav class="nav">
+                    <a href="#about">О нас</a>
+                    <a href="#courses">Курсы</a>
+                    <a href="#contact">Контакты</a>
+                </nav>
+                <div class="header-buttons">
+                    <a href="https://t.me/zhol_aman_kz" class="btn btn-secondary">Telegram</a>
+                    <a href="https://wa.me/77772282828" class="btn btn-primary">WhatsApp</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>АВТОШКОЛА <span class="highlight">ЖОЛ АМАН</span></h1>
+                <p>Ваш надежный путь к безопасному вождению!</p>
+                <p class="subtitle">Станьте водителем уже через 3 месяца — начните прямо сейчас</p>
+                <div class="hero-buttons">
+                    <a href="https://wa.me/77772282828" class="btn btn-primary">ЗАПИСАТЬСЯ</a>
+                    <a href="#courses" class="btn" style="background: white; color: #333;">УЗНАТЬ БОЛЬШЕ</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Advantages Section -->
+    <section class="advantages" id="about">
+        <div class="container">
+            <h2 class="section-title">ПОЧЕМУ ВЫБИРАЮТ НАС?</h2>
+            <div class="advantages-grid">
+                <div class="advantage-card">
+                    <div class="advantage-icon">💻</div>
+                    <h3>Гибкий формат обучения</h3>
+                    <p>Онлайн + оффлайн занятия для вашего удобства</p>
+                </div>
+                <div class="advantage-card">
+                    <div class="advantage-icon">👨‍🏫</div>
+                    <h3>Индивидуальное вождение</h3>
+                    <p>Персональные уроки с опытными инструкторами</p>
+                </div>
+                <div class="advantage-card">
+                    <div class="advantage-icon">👩‍🏫</div>
+                    <h3>Женский инструктор</h3>
+                    <p>Отдельные группы специально для женщин</p>
+                </div>
+                <div class="advantage-card">
+                    <div class="advantage-icon">📚</div>
+                    <h3>Подготовка к экзаменам</h3>
+                    <p>Разбор тестов и практическая подготовка</p>
+                </div>
+                <div class="advantage-card">
+                    <div class="advantage-icon">💳</div>
+                    <h3>Рассрочка 0%</h3>
+                    <p>Удобная система оплаты без переплат</p>
+                </div>
+                <div class="advantage-card">
+                    <div class="advantage-icon">🏆</div>
+                    <h3>Государственный сертификат</h3>
+                    <p>Официальное свидетельство государственного образца</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Courses Section -->
+    <section class="courses" id="courses">
+        <div class="container">
+            <h2 class="section-title">НАШИ ТАРИФЫ</h2>
+            <p style="text-align: center; margin-bottom: 3rem; font-size: 1.2rem; color: #666;">
+                Выберите удобный для себя формат обучения — очный или онлайн
+            </p>
+            <div class="courses-grid">
+                <div class="course-card">
+                    <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">Стандарт</h3>
+                    <div class="course-price">65 000 ₸ + 35 000 ₸</div>
+                    <div class="course-features">
+                        <p><strong>Практика вождения:</strong> 10 академ. часов (5 уроков по 1,5ч)</p>
+                        <p><strong>Теория:</strong> 3 раза в неделю, 1 месяц</p>
+                        <p><strong>Дополнительно:</strong> Сертификат, домашние задания</p>
+                    </div>
+                    <a href="https://wa.me/77772282828" class="btn btn-primary" style="width: 100%;">ПОДРОБНЕЕ</a>
+                </div>
+                <div class="course-card popular">
+                    <div class="popular-badge">ПОПУЛЯРНЫЙ</div>
+                    <h3 style="font-size: 1.5rem; margin-bottom: 1rem;">Выгодный</h3>
+                    <div class="course-price">160 000 ₸</div>
+                    <div class="course-features">
+                        <p><strong>Практика вождения:</strong> 16 академ. часов (8 уроков по 1,5ч)</p>
+                        <p><strong>Теория:</strong> 3 раза в неделю, 1 месяц</p>
+                        <p><strong>Дополнительно:</strong> Сертификат, PDD.test, мед.справка, вход на автодром</p>
+                    </div>
+                    <a href="https://wa.me/77772282828" class="btn btn-primary" style="width: 100%;">ПОДРОБНЕЕ</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process">
+        <div class="container">
+            <h2 class="section-title">НАШЕ ОБУЧЕНИЕ</h2>
+            <div class="process-grid">
+                <div class="process-step">
+                    <div class="step-number">1</div>
+                    <h3>Консультация и выбор группы</h3>
+                    <p>Подбираем оптимальную программу под ваши потребности</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">2</div>
+                    <h3>Теория в классе или онлайн</h3>
+                    <p>Изучаем ПДД и основы безопасного вождения</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">3</div>
+                    <h3>Практические занятия</h3>
+                    <p>Отработка навыков вождения с инструктором</p>
+                </div>
+                <div class="process-step">
+                    <div class="step-number">4</div>
+                    <h3>Подготовка к экзамену</h3>
+                    <p>Финальная подготовка и сдача внутреннего экзамена</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta">
+        <div class="container">
+            <h2>ГОТОВЫ НАЧАТЬ ОБУЧЕНИЕ?</h2>
+            <p>Запишитесь на курс прямо сейчас</p>
+            <a href="https://wa.me/77772282828" class="btn" style="background: white; color: #FF0000; font-size: 1.2rem; padding: 1rem 2rem;">ЗАПИСАТЬСЯ НА КУРС</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>Автошкола "Жол Аман"</h3>
+                    <p>Ваш надежный путь к безопасному вождению</p>
+                    <p>Профессиональное обучение вождению в Алматы</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Контакты</h3>
+                    <p>📍 Илийский тракт, 10, Алматы</p>
+                    <p>📱 WhatsApp: +7 777 228 28 28</p>
+                    <p>📞 Telegram: @zhol_aman_kz</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Социальные сети</h3>
+                    <a href="https://instagram.com/zhol_aman_kz">📸 Instagram</a>
+                    <a href="https://t.me/zhol_aman_kz">💬 Telegram</a>
+                    <a href="https://wa.me/77772282828">📱 WhatsApp</a>
+                </div>
+                <div class="footer-section">
+                    <h3>Услуги</h3>
+                    <p>• Обучение вождению категории B</p>
+                    <p>• Теоретические курсы ПДД</p>
+                    <p>• Практические занятия</p>
+                    <p>• Подготовка к экзаменам</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Автошкола "Жол Аман". Все права защищены.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating Widgets -->
+    <div class="floating-widgets">
+        <a href="https://wa.me/77772282828" class="floating-btn whatsapp-btn" title="WhatsApp">📱</a>
+        <a href="https://t.me/zhol_aman_kz" class="floating-btn telegram-btn" title="Telegram">✈️</a>
+    </div>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Add animation to floating widgets
+        setTimeout(() => {
+            document.querySelector('.floating-widgets').style.opacity = '1';
+        }, 2000);
+    </script>
+</body>
 </html>
 
