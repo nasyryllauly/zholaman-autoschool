@@ -23,12 +23,14 @@
             padding: 0 20px;
         }
 
-        /* Hero Section */
+        /* Hero Section - Fixed background */
         .hero {
             background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url('hero-bg.png');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
+            background-attachment: fixed;
+            width: 100vw;
             height: 100vh;
             display: flex;
             align-items: center;
@@ -36,6 +38,12 @@
             text-align: center;
             color: white;
             position: relative;
+            margin-left: calc(-50vw + 50%);
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            padding: 0 20px;
         }
 
         .hero-content h1 {
@@ -100,6 +108,77 @@
             transform: translateY(-2px);
         }
 
+        /* Statistics Section */
+        .stats {
+            padding: 60px 0;
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            text-align: center;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+        }
+
+        .stat-item {
+            padding: 1rem;
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        /* Promo Banner */
+        .promo-banner {
+            background: linear-gradient(45deg, #ff6b6b, #ee5a24);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .promo-banner::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            animation: shine 3s infinite;
+        }
+
+        @keyframes shine {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .promo-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .promo-content p {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .promo-timer {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
         /* Advantages Section */
         .advantages {
             padding: 80px 0;
@@ -148,16 +227,48 @@
             line-height: 1.6;
         }
 
-        .check-icon {
-            color: #e74c3c;
-            font-size: 1.5rem;
-            margin-right: 0.5rem;
+        /* Testimonials Section */
+        .testimonials {
+            padding: 80px 0;
+            background-color: white;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        .testimonial-card {
+            background: #f8f9fa;
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 5px solid #e74c3c;
+            position: relative;
+        }
+
+        .testimonial-text {
+            font-style: italic;
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .testimonial-author {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .testimonial-rating {
+            color: #ffd700;
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
         }
 
         /* Courses Section */
         .courses {
             padding: 80px 0;
-            background-color: white;
+            background-color: #f8f9fa;
         }
 
         .courses-grid {
@@ -227,10 +338,62 @@
             color: #333;
         }
 
+        /* Guarantee Section */
+        .guarantee {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #2c3e50, #34495e);
+            color: white;
+            text-align: center;
+        }
+
+        .guarantee-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .guarantee-icon {
+            font-size: 4rem;
+            margin-bottom: 2rem;
+        }
+
+        .guarantee h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .guarantee p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+        }
+
+        .guarantee-list {
+            text-align: left;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .guarantee-list li {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+            list-style: none;
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .guarantee-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: #27ae60;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
         /* Process Section */
         .process {
             padding: 80px 0;
-            background-color: #f8f9fa;
+            background-color: white;
         }
 
         .process-grid {
@@ -240,7 +403,7 @@
         }
 
         .process-step {
-            background: white;
+            background: #f8f9fa;
             padding: 2rem;
             border-radius: 10px;
             text-align: center;
@@ -270,6 +433,37 @@
         .process-step p {
             color: #666;
             line-height: 1.6;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            padding: 80px 0;
+            background: linear-gradient(135deg, #e74c3c, #c0392b);
+            color: white;
+            text-align: center;
+        }
+
+        .cta-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .cta-content p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+        }
+
+        .cta-buttons-large {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn-large {
+            padding: 20px 40px;
+            font-size: 1.3rem;
+            border-radius: 8px;
         }
 
         /* Floating Widgets */
@@ -312,6 +506,11 @@
 
         /* Mobile Responsive */
         @media (max-width: 768px) {
+            .hero {
+                background-attachment: scroll;
+                height: 80vh;
+            }
+
             .hero-content h1 {
                 font-size: 2.5rem;
             }
@@ -340,7 +539,9 @@
                 font-size: 2rem;
             }
 
+            .stats-grid,
             .advantages-grid,
+            .testimonials-grid,
             .courses-grid,
             .process-grid {
                 grid-template-columns: 1fr;
@@ -348,6 +549,7 @@
             }
 
             .advantage-card,
+            .testimonial-card,
             .course-card,
             .process-step {
                 padding: 1.5rem;
@@ -367,11 +569,37 @@
                 height: 50px;
                 font-size: 1.2rem;
             }
+
+            .promo-content h2 {
+                font-size: 2rem;
+            }
+
+            .promo-content p {
+                font-size: 1.1rem;
+            }
+
+            .guarantee h2 {
+                font-size: 2rem;
+            }
+
+            .cta-content h2 {
+                font-size: 2rem;
+            }
+
+            .cta-buttons-large {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn-large {
+                width: 100%;
+                max-width: 300px;
+            }
         }
 
         @media (max-width: 480px) {
             .hero {
-                height: 80vh;
+                height: 70vh;
                 padding: 20px 0;
             }
 
@@ -391,13 +619,19 @@
                 font-size: 1.8rem;
             }
 
+            .stats,
+            .promo-banner,
             .advantages,
+            .testimonials,
             .courses,
-            .process {
+            .guarantee,
+            .process,
+            .cta-section {
                 padding: 60px 0;
             }
 
             .advantage-card,
+            .testimonial-card,
             .course-card,
             .process-step {
                 padding: 1rem;
@@ -409,6 +643,10 @@
 
             .course-price {
                 font-size: 1.8rem;
+            }
+
+            .stat-number {
+                font-size: 2.5rem;
             }
         }
 
@@ -432,20 +670,65 @@
         .floating-widgets {
             animation: fadeInUp 1s ease-out 2s both;
         }
+
+        /* Pulse animation for CTA buttons */
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+
+        .btn-primary:hover {
+            animation: pulse 0.6s ease-in-out;
+        }
     </style>
 </head>
 <body>
     <!-- Hero Section -->
     <section class="hero">
+        <div class="hero-content">
+            <h1>АВТОШКОЛА <span class="highlight">ЖОЛ АМАН</span></h1>
+            <p>Ваш надежный путь к безопасному вождению!</p>
+            <p class="subtitle">Станьте водителем уже через 3 месяца — начните прямо сейчас</p>
+            <div class="cta-buttons">
+                <a href="https://wa.me/77785878289" class="btn btn-primary">ЗАПИСАТЬСЯ СЕЙЧАС</a>
+                <a href="#courses" class="btn btn-secondary">УЗНАТЬ БОЛЬШЕ</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Statistics Section -->
+    <section class="stats">
         <div class="container">
-            <div class="hero-content">
-                <h1>АВТОШКОЛА <span class="highlight">ЖОЛ АМАН</span></h1>
-                <p>Ваш надежный путь к безопасному вождению!</p>
-                <p class="subtitle">Станьте водителем уже через 3 месяца — начните прямо сейчас</p>
-                <div class="cta-buttons">
-                    <a href="https://wa.me/77785878289" class="btn btn-primary">ЗАПИСАТЬСЯ</a>
-                    <a href="#courses" class="btn btn-secondary">УЗНАТЬ БОЛЬШЕ</a>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">Выпускников</div>
                 </div>
+                <div class="stat-item">
+                    <div class="stat-number">95%</div>
+                    <div class="stat-label">Сдают с первого раза</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">5</div>
+                    <div class="stat-label">Лет опыта</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">24/7</div>
+                    <div class="stat-label">Поддержка</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Promo Banner -->
+    <section class="promo-banner">
+        <div class="container">
+            <div class="promo-content">
+                <h2>🔥 АКЦИЯ! СКИДКА 20% 🔥</h2>
+                <p>При записи в этом месяце — специальная цена!</p>
+                <div class="promo-timer">⏰ Предложение ограничено!</div>
+                <a href="https://wa.me/77785878289" class="btn btn-secondary btn-large">ПОЛУЧИТЬ СКИДКУ</a>
             </div>
         </div>
     </section>
@@ -489,6 +772,36 @@
         </div>
     </section>
 
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <h2 class="section-title">ОТЗЫВЫ НАШИХ УЧЕНИКОВ</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                    <div class="testimonial-text">
+                        "Отличная автошкола! Инструкторы профессиональные, объясняют понятно. Сдала экзамен с первого раза благодаря качественной подготовке."
+                    </div>
+                    <div class="testimonial-author">— Айгуль К.</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                    <div class="testimonial-text">
+                        "Очень удобно, что есть онлайн-занятия. Работаю допоздна, а здесь могу учиться в удобное время. Рекомендую всем!"
+                    </div>
+                    <div class="testimonial-author">— Данияр М.</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">⭐⭐⭐⭐⭐</div>
+                    <div class="testimonial-text">
+                        "Женский инструктор — это просто находка! Чувствовала себя комфортно и уверенно. Спасибо за терпение и профессионализм!"
+                    </div>
+                    <div class="testimonial-author">— Асель Т.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <!-- Courses Section -->
     <section class="courses" id="courses">
         <div class="container">
@@ -505,7 +818,7 @@
                         <p><strong>Теория:</strong> 3 раза в неделю, 1 месяц</p>
                         <p><strong>Дополнительно:</strong> Сертификат, домашние задания</p>
                     </div>
-                    <a href="https://wa.me/77785878289" class="btn btn-primary">ПОДРОБНЕЕ</a>
+                    <a href="https://wa.me/77785878289" class="btn btn-primary">ЗАПИСАТЬСЯ</a>
                 </div>
                 <div class="course-card popular">
                     <div class="popular-badge">ПОПУЛЯРНЫЙ</div>
@@ -516,8 +829,27 @@
                         <p><strong>Теория:</strong> 3 раза в неделю, 1 месяц</p>
                         <p><strong>Дополнительно:</strong> Сертификат, PDD.test, мед.справка, вход на автодром</p>
                     </div>
-                    <a href="https://wa.me/77785878289" class="btn btn-primary">ПОДРОБНЕЕ</a>
+                    <a href="https://wa.me/77785878289" class="btn btn-primary">ЗАПИСАТЬСЯ</a>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Guarantee Section -->
+    <section class="guarantee">
+        <div class="container">
+            <div class="guarantee-content">
+                <div class="guarantee-icon">🛡️</div>
+                <h2>НАШИ ГАРАНТИИ</h2>
+                <p>Мы уверены в качестве нашего обучения и предоставляем следующие гарантии:</p>
+                <ul class="guarantee-list">
+                    <li>Возврат денег, если не сдадите экзамен с третьего раза</li>
+                    <li>Бесплатные дополнительные занятия при необходимости</li>
+                    <li>Официальный сертификат государственного образца</li>
+                    <li>Поддержка куратора на всех этапах обучения</li>
+                    <li>Помощь в записи на экзамен в ЦОН</li>
+                </ul>
+                <a href="https://wa.me/77785878289" class="btn btn-secondary btn-large">УЗНАТЬ ПОДРОБНЕЕ</a>
             </div>
         </div>
     </section>
@@ -525,27 +857,41 @@
     <!-- Process Section -->
     <section class="process">
         <div class="container">
-            <h2 class="section-title">НАШЕ ОБУЧЕНИЕ</h2>
+            <h2 class="section-title">КАК ПРОХОДИТ ОБУЧЕНИЕ</h2>
             <div class="process-grid">
                 <div class="process-step">
                     <div class="step-number">1</div>
                     <h3>Консультация и выбор группы</h3>
-                    <p>Подбираем оптимальную программу под ваши потребности</p>
+                    <p>Подбираем оптимальную программу под ваши потребности и график</p>
                 </div>
                 <div class="process-step">
                     <div class="step-number">2</div>
                     <h3>Теория в классе или онлайн</h3>
-                    <p>Изучаем ПДД и основы безопасного вождения</p>
+                    <p>Изучаем ПДД и основы безопасного вождения в удобном формате</p>
                 </div>
                 <div class="process-step">
                     <div class="step-number">3</div>
                     <h3>Практические занятия</h3>
-                    <p>Отработка навыков вождения с инструктором</p>
+                    <p>Отработка навыков вождения с опытным инструктором</p>
                 </div>
                 <div class="process-step">
                     <div class="step-number">4</div>
                     <h3>Подготовка к экзамену</h3>
                     <p>Финальная подготовка и сдача внутреннего экзамена</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA Section -->
+    <section class="cta-section">
+        <div class="container">
+            <div class="cta-content">
+                <h2>ГОТОВЫ СТАТЬ ВОДИТЕЛЕМ?</h2>
+                <p>Не откладывайте на завтра то, что можете начать сегодня!</p>
+                <div class="cta-buttons-large">
+                    <a href="https://wa.me/77785878289" class="btn btn-secondary btn-large">ЗАПИСАТЬСЯ НА КУРС</a>
+                    <a href="tel:+77785878289" class="btn btn-primary btn-large">ПОЗВОНИТЬ СЕЙЧАС</a>
                 </div>
             </div>
         </div>
@@ -566,17 +912,13 @@
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function (e) {
                 e.preventDefault();
-                const target = document.querySelector(this.getAttribute('href'));
-                if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth',
-                        block: 'start'
-                    });
-                }
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
             });
         });
 
-        // Add animation to cards on scroll
+        // Add animation on scroll
         const observerOptions = {
             threshold: 0.1,
             rootMargin: '0px 0px -50px 0px'
@@ -591,12 +933,12 @@
             });
         }, observerOptions);
 
-        // Observe all cards
-        document.querySelectorAll('.advantage-card, .course-card, .process-step').forEach(card => {
-            card.style.opacity = '0';
-            card.style.transform = 'translateY(30px)';
-            card.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
-            observer.observe(card);
+        // Observe all cards and sections
+        document.querySelectorAll('.advantage-card, .testimonial-card, .course-card, .process-step').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+            observer.observe(el);
         });
     </script>
 </body>
